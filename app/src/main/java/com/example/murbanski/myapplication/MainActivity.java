@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://mundial2018.000webhostapp.com/mundial/getMatches.php";
+        String url = "http://5b59a29cf294400014c9b82a.mockapi.io/matches";
 
         GsonRequest<GetMatchesResponse> request = new GsonRequest<>(url, GetMatchesResponse.class, new HashMap<String, String>(),
                 new Response.Listener<GetMatchesResponse>() {

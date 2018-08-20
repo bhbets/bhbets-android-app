@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GetMatchesResponse {
 
-    @SerializedName("result")
+    @SerializedName("matches")
     private List<MatchData> matches;
 
     public GetMatchesResponse() {

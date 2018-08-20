@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class MatchData {
 
-    @SerializedName("id_match")
+    @SerializedName("id")
     private String id;
 
-    @SerializedName("team_a")
+    @SerializedName("homeTeamName")
     private String homeTeam;
 
-    @SerializedName("team_b")
+    @SerializedName("awayTeamName")
     private String awayTeam;
 
     public MatchData() {
