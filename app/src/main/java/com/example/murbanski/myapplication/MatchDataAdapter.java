@@ -2,6 +2,7 @@ package com.example.murbanski.myapplication;
 
 import android.content.Context;
 import android.graphics.Movie;
+import android.os.CountDownTimer;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,12 +32,27 @@ public class MatchDataAdapter extends ArrayAdapter<MatchData> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
         if(listItem == null)
-            listItem = LayoutInflater.from(mContext).inflate(android.R.layout.simple_list_item_1, parent,false);
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.match_list_item, parent,false);
 
         MatchData currentMatch = matches.get(position);
 
-        TextView textView = listItem.findViewById(android.R.id.text1);
-        textView.setText(String.format("%s VS %s", currentMatch.getHomeTeam(), currentMatch.getAwayTeam()));
+        TextView textViewHome = listItem.findViewById(R.id.txt_match_team_home);
+        TextView textViewAway = listItem.findViewById(R.id.txt_match_team_away);
+        final TextView textViewCounter = listItem.findViewById(R.id.txt_match_status);
+        textViewHome.setText(currentMatch.getHomeTeam());
+        textViewAway.setText(currentMatch.getAwayTeam());
+
+        CountDownTimer Count = new CountDownTimer(30000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                textViewCounter.setText("Match starts in: " + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                textViewCounter.setText("FINISHED");
+            }
+        };
+
+        Count.start();
 
         return listItem;
     }
