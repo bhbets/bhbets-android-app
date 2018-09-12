@@ -13,6 +13,9 @@ public class MatchData {
     @SerializedName("awayTeamName")
     private String awayTeam;
 
+    @SerializedName("startDate")
+    private String startDate;
+
     public MatchData() {
     }
 
@@ -38,5 +41,13 @@ public class MatchData {
 
     public void setAwayTeam(String awayTeam) {
         this.awayTeam = awayTeam;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 }
