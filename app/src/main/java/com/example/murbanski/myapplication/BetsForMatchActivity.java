@@ -22,16 +22,18 @@ public class BetsForMatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bets);
 
         final ListView listView = findViewById(R.id.betsView);
+        final ListView listView2 = findViewById(R.id.currentUserBetView);
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = String.format("https://mundial2018.000webhostapp.com/mundial/getBetsWithScores.php?id_match=%s", getIntent().getStringExtra("MATCH_ID"));
+        String url = String.format("http://5b59a29cf294400014c9b82a.mockapi.io/matches/%s", getIntent().getStringExtra("MATCH_ID"));
 
         GsonRequest<GetBetsWithScoresResponse> request = new GsonRequest<>(url, GetBetsWithScoresResponse.class, new HashMap<String, String>(),
                 new Response.Listener<GetBetsWithScoresResponse>() {
                     @Override
                     public void onResponse(GetBetsWithScoresResponse response) {
                         listView.setAdapter(new BetDataAdapter(BetsForMatchActivity.this, response.getBets()));
+                        //listView2.setAdapter(new BetDataAdapter(BetsForMatchActivity.this, response.getBets()));
                     }
                 },
                 new Response.ErrorListener() {

@@ -26,14 +26,30 @@ public class BetDataAdapter extends ArrayAdapter<BetData> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
+        View listItem2 = convertView;
         if (listItem == null) {
-            listItem = LayoutInflater.from(mContext).inflate(android.R.layout.simple_list_item_1, parent, false);
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.bets_list_item, parent, false);
+            listItem2 = LayoutInflater.from(mContext).inflate(R.layout.match_list_item, parent, false);
         }
-
         BetData currentBet = bets.get(position);
 
-        TextView textView = listItem.findViewById(android.R.id.text1);
-        textView.setText(String.format("%s: %s:%s", currentBet.getLogin(), currentBet.getHomeTeamBet(), currentBet.getAwayTeamBet()));
+        /*if (position == 0){
+
+
+            TextView textViewHome = listItem2.findViewById(R.id.txt_match_team_home);
+            TextView textViewAway = listItem2.findViewById(R.id.txt_match_team_away);
+            textViewHome.setText(currentBet.getHomeTeamName());
+            textViewAway.setText(currentBet.getAwayTeamName());
+        }*/
+
+        TextView textViewNick = listItem.findViewById(R.id.txt_nick);
+        TextView textViewBet = listItem.findViewById(R.id.txt_bet);
+        TextView textViewPoints = listItem.findViewById(R.id.txt_points);
+        textViewNick.setText("Nick");
+        textViewBet.setText("5 : 0");
+        //textViewBet.setText(String.format("%s : %s", currentBet.getHomeTeamResult(), currentBet.getAwayTeamBet()));
+        textViewPoints.setText("5");
+
 
         return listItem;
     }
