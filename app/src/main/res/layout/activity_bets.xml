@@ -9,11 +9,11 @@
 
 
     <TextView
-        android:id="@+id/txtMatchInfo"
+        android:id="@+id/txtTeams"
         android:layout_width="335dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="FC Barcelona - Chelsea Londyn"
+        android:text="Teams"
         android:textAlignment="center"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:text="10 : 0"
+        android:text="Result"
+        android:textAlignment="center"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/txtPlayer"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Player"
+        android:textAlignment="center"
+        android:textSize="14dp"
+        android:layout_below="@+id/txtResult"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="1dp" />
+
+    <TextView
+        android:id="@+id/txtBet"
+        android:layout_width="94dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/txtTeams"
+        android:text="Bet"
         android:textAlignment="center"
         android:textSize="14dp" />
 
@@ -33,7 +55,7 @@
         android:id="@+id/currentUserBetView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/txtResult"
+        android:layout_below="@+id/txtPlayer"
         android:layout_centerHorizontal="true" />
 
     <ListView

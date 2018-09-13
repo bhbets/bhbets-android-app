@@ -4,81 +4,39 @@ import com.google.gson.annotations.SerializedName;
 
 public class BetData {
 
-    /*@SerializedName("login")
-    private String login;*/
+    @SerializedName("player")
+    private String player;
 
-    @SerializedName("result")
-    Result result;
+    @SerializedName("bet")
+    private Score bet;
 
-    public class Result {
-
-        @SerializedName("homeTeam")
-        private String homeTeamBet;
-
-        @SerializedName("awayTeam")
-        private String awayTeamBet;
-    }
-
-    @SerializedName("homeTeamName")
-    private String homeTeamName;
-
-    @SerializedName("awayTeamName")
-    private String awayTeamName;
-
-    @SerializedName("homeTeam")
-    private String homeTeamResult;
-
-    @SerializedName("awayTeam")
-    private String awayTeamResult;
+    @SerializedName("points")
+    private int points;
 
     public BetData() {
     }
 
-    /*public String getLogin() {
-        return login;
+    public String getPlayer() {
+        return player;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }*/
-
-    public String getHomeTeamName() {
-        return homeTeamName;
+    public void setPlayer(String player) {
+        this.player = player;
     }
 
-    public void setHomeTeamName(String homeTeamName) {
-        this.homeTeamName = homeTeamName;
+    public Score getBet() {
+        return bet;
     }
 
-    public String getAwayTeamName() {
-        return awayTeamName;
+    public void setBet(Score bet) {
+        this.bet = bet;
     }
 
-    public void setAwayTeamName(String awayTeamName) {
-        this.awayTeamName = awayTeamName;
+    public int getPoints() {
+        return points;
     }
 
-    public String getHomeTeamResult() {
-        return homeTeamResult;
-    }
-
-    public void setHomeTeamResult(String homeTeamResult) {
-        this.homeTeamResult = homeTeamResult;
-    }
-
-    public String getAwayTeamResult() {
-        return awayTeamResult;
-    }
-
-    public void setAwayTeamResult(String awayTeamResult) {
-        this.awayTeamResult = awayTeamResult;
-    }
-
-    public Result getResult() {
-        return result;
-    }
-
-    public void setResult(Result result) {
-        this.result = result;
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
