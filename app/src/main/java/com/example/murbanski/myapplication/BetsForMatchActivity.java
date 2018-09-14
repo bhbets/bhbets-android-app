@@ -37,9 +37,11 @@ public class BetsForMatchActivity extends AppCompatActivity {
                 new Response.Listener<GetSingleMatchResponse>() {
                     @Override
                     public void onResponse(GetSingleMatchResponse response) {
-                        listView.setAdapter(new BetDataAdapter(BetsForMatchActivity.this, response.getOtherBets()));
-                        displayMatchInformation(response.getHomeTeam(), response.getAwayTeam(), response.getResult().getHomeTeam(), response.getResult().getAwayTeam());
-                        displayBetForLoggedUser("Player", response.getBet().getHomeTeam(), response.getBet().getAwayTeam());
+                        if(!response.getStatus().equals("CREATED") && !response.getStatus().equals("LOCKED")) {
+                            listView.setAdapter(new BetDataAdapter(BetsForMatchActivity.this, response.getOtherBets()));
+                            displayBetForLoggedUser("Player", response.getBet().getHomeTeam(), response.getBet().getAwayTeam());
+                            displayMatchInformation(response.getHomeTeam(), response.getAwayTeam(), response.getResult().getHomeTeam(), response.getResult().getAwayTeam());
+                        }
                     }
                 },
                 new Response.ErrorListener() {

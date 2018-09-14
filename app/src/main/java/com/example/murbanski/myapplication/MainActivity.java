@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -55,4 +56,12 @@ public class MainActivity extends AppCompatActivity {
         // Add the request to the RequestQueue.
         queue.add(request);
     }
+
+    public void goToPoints (View view) {
+
+        Intent intent = new Intent(getApplicationContext(), PointsActivity.class);
+        startActivity(intent);
+
+    }
+
 }
