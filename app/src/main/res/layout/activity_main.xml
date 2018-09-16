@@ -20,6 +20,9 @@
 
     <Button
         android:id="@+id/button"
+        android:background="@color/cardview_dark_background"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

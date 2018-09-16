@@ -15,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:text="Teams"
         android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
+        android:textColor="#FAFAFA"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="1dp" />
@@ -27,6 +27,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:text="Result"
+        android:textColor="#FAFAFA"
         android:textAlignment="center"
         android:textSize="14dp" />
 
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="Player"
+        android:textColor="#FAFAFA"
         android:textAlignment="center"
         android:textSize="14dp"
         android:layout_below="@+id/txtResult"
@@ -49,6 +51,7 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/txtTeams"
         android:text="Bet"
+        android:textColor="#FAFAFA"
         android:textAlignment="center"
         android:textSize="14dp" />
 

@@ -44,14 +44,26 @@ public class MatchDataAdapter extends ArrayAdapter<MatchData> {
         if(listItem == null)
             listItem = LayoutInflater.from(mContext).inflate(R.layout.match_list_item, parent,false);
 
-        MatchData currentMatch = matches.get(position);
+        final MatchData currentMatch = matches.get(position);
         final TextView textViewCounter = listItem.findViewById(R.id.txt_match_status);
         TextView textViewHome = listItem.findViewById(R.id.txt_match_team_home);
         TextView textViewAway = listItem.findViewById(R.id.txt_match_team_away);
         TextView textViewDate = listItem.findViewById(R.id.txt_match_date);
+        TextView textViewUserBet = listItem.findViewById(R.id.txt_user_bet);
+        TextView textViewResultHome = listItem.findViewById(R.id.txt_match_result_home);
+        TextView textViewResultAway = listItem.findViewById(R.id.txt_match_result_away);
+
         textViewHome.setText(currentMatch.getHomeTeam());
         textViewAway.setText(currentMatch.getAwayTeam());
         textViewDate.setText(currentMatch.getStartDate());
+
+        if(currentMatch.getBet() != null){
+            textViewResultHome.setText(Integer.toString(currentMatch.getBet().getHomeTeam()));
+            textViewResultAway.setText(Integer.toString(currentMatch.getBet().getAwayTeam()));
+        }else {
+            textViewResultHome.setText("?");
+            textViewResultAway.setText("?");
+        }
 
         String oldTime = formatter.format(Calendar.getInstance().getTime());
         String newTime = matchDate(textViewDate.getText().toString());
@@ -79,7 +91,11 @@ public class MatchDataAdapter extends ArrayAdapter<MatchData> {
             }
 
             public void onFinish() {
-                textViewCounter.setText("FINISHED");
+                if (currentMatch.getResult() != null){
+                    textViewCounter.setText(String.format("FINISHED (%s : %s) ", currentMatch.getResult().getHomeTeam(), currentMatch.getResult().getAwayTeam()));
+                }else{
+                    textViewCounter.setText(currentMatch.getStatus());
+                }
             }
         };
 

@@ -16,6 +16,15 @@ public class MatchData {
     @SerializedName("startDate")
     private String startDate;
 
+    @SerializedName("bet")
+    private Score bet;
+
+    @SerializedName("result")
+    private Score result;
+
+    @SerializedName("status")
+    private String status;
+
     public MatchData() {
     }
 
@@ -49,5 +58,29 @@ public class MatchData {
 
     public void setStartDate(String startDate) {
         this.startDate = startDate;
+    }
+
+    public Score getBet() {
+        return bet;
+    }
+
+    public void setBet(Score bet) {
+        this.bet = bet;
+    }
+
+    public Score getResult() {
+        return result;
+    }
+
+    public void setResult(Score result) {
+        this.result = result;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
