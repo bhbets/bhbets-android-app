@@ -1,11 +1,11 @@
 package com.example.murbanski.myapplication;
 
-public class RegisterRequest {
+public class Credentials {
 
     private String username;
     private String password;
 
-    public RegisterRequest(String username, String password) {
+    public Credentials(String username, String password) {
 
         this.username = username;
         this.password = password;
