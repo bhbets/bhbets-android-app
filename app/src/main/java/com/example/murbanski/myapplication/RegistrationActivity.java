@@ -6,12 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 public class RegistrationActivity extends AppCompatActivity {
-
-    RegisterObject user;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +25,7 @@ public class RegistrationActivity extends AppCompatActivity {
         EditText editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
-        user.setUsername(editTextLogin.getText().toString());
-        user.setPassword(editTextPassword.getText().toString());
+        RegisterRequest request = new RegisterRequest(editTextLogin.getText().toString(), editTextPassword.getText().toString());
 
     }
 
