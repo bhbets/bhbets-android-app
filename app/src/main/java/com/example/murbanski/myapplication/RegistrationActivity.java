@@ -27,19 +27,18 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         EditText editTextLogin = findViewById(R.id.editTextLogin);
         EditText editTextPassword = findViewById(R.id.editTextPassword);
+        EditText editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
 
         Credentials credentials = new Credentials(
                 editTextLogin.getText().toString(),
                 editTextPassword.getText().toString()
         );
 
-        authorizationApi.register(credentials)
-                .enqueue(this);
-        EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        EditText editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
+
 
         if(editTextPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            authorizationApi.register(credentials)
+                    .enqueue(this);
 
         }else{
             Toast.makeText(RegistrationActivity.this, "Passwords do not match.", Toast.LENGTH_LONG).show();
@@ -52,12 +51,12 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         if (response.isSuccessful()) {
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         } else {
-            Toast.makeText(this, "registration failed: " + response.message(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Registration failed: " + response.message(), Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void onFailure(Call<ResponseBody> call, Throwable t) {
-        Toast.makeText(this, "registration failed: " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Registration failed: " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 }
