@@ -59,7 +59,6 @@
         android:layout_below="@+id/textView5"
         android:layout_centerHorizontal="true"
         android:background="#424242"
-        android:onClick="register"
         android:text="Register"
         android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
         android:textStyle="bold" />
