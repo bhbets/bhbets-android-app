@@ -17,12 +17,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(View view){
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        finish();
     }
 
     public void registration(View view){
         startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
-        finish();
     }
 
 

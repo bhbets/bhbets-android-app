@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -16,8 +17,16 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void register(View view){
 
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        finish();
+        EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        EditText editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
+
+        if(editTextPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+        }else{
+            Toast.makeText(RegistrationActivity.this, "Passwords do not match.", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void sendData(){
