@@ -27,7 +27,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         EditText editTextLogin = findViewById(R.id.editTextLogin);
         EditText editTextPassword = findViewById(R.id.editTextPassword);
-        EditText editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
+        EditText editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
 
         Credentials credentials = new Credentials(
                 editTextLogin.getText().toString(),
