@@ -12,7 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class LoginActivity extends AppCompatActivity implements Callback<LoginResponse> {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Callback<LoginResponse> {
 
     private final AuthorizationApi authorizationApi = new AuthorizationClient();
 
@@ -20,19 +20,17 @@ public class LoginActivity extends AppCompatActivity implements Callback<LoginRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        findViewById(R.id.buttonLogin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                login(view);
-            }
-        });
+        findViewById(R.id.buttonLogin).setOnClickListener(this);
+        findViewById(R.id.buttonRegistration).setOnClickListener(this);
+    }
 
-        findViewById(R.id.buttonRegistration).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registration(view);
-            }
-        });
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.buttonLogin) {
+            login();
+        } else if (view.getId() == R.id.buttonRegistration) {
+            startActivity(new Intent(this, RegistrationActivity.class));
+        }
     }
 
     @Override
@@ -49,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements Callback<LoginRe
         Toast.makeText(this, "Bad credentials", Toast.LENGTH_LONG).show();
     }
 
-    private void login(View view) {
+    private void login() {
         EditText editTextLogin = findViewById(R.id.editTextLogin);
         EditText editTextPassword = findViewById(R.id.editTextPassword);
 
@@ -60,11 +58,6 @@ public class LoginActivity extends AppCompatActivity implements Callback<LoginRe
 
         authorizationApi.login(credentials).enqueue(this);
     }
-
-    private void registration(View view) {
-        startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
-    }
-
 }
 
 
