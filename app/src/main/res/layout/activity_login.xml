@@ -34,7 +34,6 @@
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:background="#424242"
-        android:onClick="login"
         android:text="Login"
         android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
         android:textStyle="bold" />
@@ -53,7 +52,6 @@
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
         android:background="#424242"
-        android:onClick="registration"
         android:text="Register"
         android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
         android:textStyle="bold" />

@@ -11,5 +11,5 @@ public interface AuthorizationApi {
     Call<ResponseBody> register(@Body Credentials credentials);
 
     @POST("/login")
-    Call<ResponseBody> login(@Body Credentials credentials);
+    Call<LoginResponse> login(@Body Credentials credentials);
 }

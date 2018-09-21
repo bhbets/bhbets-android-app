@@ -23,7 +23,7 @@ public class AuthorizationClient implements AuthorizationApi {
     }
 
     @Override
-    public Call<ResponseBody> login(Credentials credentials) {
+    public Call<LoginResponse> login(Credentials credentials) {
         return instance.login(credentials);
     }
 }
