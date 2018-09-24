@@ -48,8 +48,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void login() {
-        EditText editTextLogin = findViewById(R.id.editTextLogin);
-        EditText editTextPassword = findViewById(R.id.editTextPassword);
+        EditText editTextLogin = findViewById(R.id.input_login);
+        EditText editTextPassword = findViewById(R.id.input_password);
 
         Credentials credentials = new Credentials(
             editTextLogin.getText().toString(),
