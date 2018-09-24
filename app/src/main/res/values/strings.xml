@@ -4,6 +4,7 @@
     <string name="hint_login">Login</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm password</string>
     <string name="btn_register">Register</string>
     <string name="err_msg_name">Enter your full name</string>
     <string name="err_msg_email">Enter valid email address</string>
