@@ -7,15 +7,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AuthorizationClient implements AuthorizationApi {
 
-    private final AuthorizationApi instance;
-
-    public AuthorizationClient() {
-        this.instance = new Retrofit.Builder()
+    private final AuthorizationApi instance =
+            new Retrofit.Builder()
                 .baseUrl("http://catheriann.nazwa.pl:8081")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(AuthorizationApi.class);
-    }
 
     @Override
     public Call<ResponseBody> register(Credentials credentials) {

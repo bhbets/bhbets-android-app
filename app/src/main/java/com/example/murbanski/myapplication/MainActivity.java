@@ -8,15 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.error.VolleyError;
-import com.android.volley.request.GsonRequest;
-import com.android.volley.toolbox.Volley;
+import retrofit2.Call;
+import retrofit2.Callback;
 
-import java.util.HashMap;
+public class MainActivity extends AppCompatActivity implements Callback<GetMatchesResponse> {
 
-public class MainActivity extends AppCompatActivity {
+    private final CompetitionApi competitionApi = new CompetitionClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,25 +33,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://5b59a29cf294400014c9b82a.mockapi.io/matches";
+        competitionApi.getMatches().enqueue(this);
+    }
 
-        GsonRequest<GetMatchesResponse> request = new GsonRequest<>(url, GetMatchesResponse.class, new HashMap<String, String>(),
-                new Response.Listener<GetMatchesResponse>() {
-                    @Override
-                    public void onResponse(GetMatchesResponse response) {
-                        listView.setAdapter(new MatchDataAdapter(MainActivity.this, response.getMatches()));
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                });
+    @Override
+    public void onResponse(Call<GetMatchesResponse> call, retrofit2.Response<GetMatchesResponse> response) {
+        final ListView listView = findViewById(R.id.cardListView);
+        listView.setAdapter(new MatchDataAdapter(this, response.body().getMatches()));
+    }
 
-        // Add the request to the RequestQueue.
-        queue.add(request);
+    @Override
+    public void onFailure(Call<GetMatchesResponse> call, Throwable t) {
+        Toast.makeText(getApplicationContext(), "Got error: " + t.getLocalizedMessage(), Toast.LENGTH_LONG)
+                .show();
     }
 
     public void goToPoints (View view) {
@@ -63,5 +54,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
 }
