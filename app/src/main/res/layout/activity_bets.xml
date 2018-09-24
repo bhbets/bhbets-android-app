@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BetsForMatchActivity"
-    android:background="@drawable/background">
+    tools:context=".BetsForMatchActivity">
 
 
     <TextView
@@ -15,7 +14,7 @@
         android:layout_marginEnd="8dp"
         android:text="Teams"
         android:textAlignment="center"
-        android:textColor="#FAFAFA"
+        android:textColor="#000000"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="1dp" />
@@ -27,7 +26,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:text="Result"
-        android:textColor="#FAFAFA"
+        android:textColor="#000000"
         android:textAlignment="center"
         android:textSize="14dp" />
 
@@ -37,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="Player"
-        android:textColor="#FAFAFA"
+        android:textColor="#000000"
         android:textAlignment="center"
         android:textSize="14dp"
         android:layout_below="@+id/txtResult"
@@ -51,7 +50,7 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/txtTeams"
         android:text="Bet"
-        android:textColor="#FAFAFA"
+        android:textColor="#000000"
         android:textAlignment="center"
         android:textSize="14dp" />
 

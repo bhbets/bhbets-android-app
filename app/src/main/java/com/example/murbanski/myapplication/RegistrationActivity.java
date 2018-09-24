@@ -20,14 +20,14 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        findViewById(R.id.buttonRegistration).setOnClickListener(this);
+        findViewById(R.id.btnRegistration).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        EditText editTextLogin = findViewById(R.id.input_login);
-        EditText editTextPassword = findViewById(R.id.input_password);
-        EditText editTextConfirmPassword = findViewById(R.id.input_confirm_password);
+        EditText editTextLogin = findViewById(R.id.etLogin);
+        EditText editTextPassword = findViewById(R.id.etPassword);
+        EditText editTextConfirmPassword = findViewById(R.id.etConfirmPassword);
 
         Credentials credentials = new Credentials(
                 editTextLogin.getText().toString(),

@@ -20,15 +20,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        findViewById(R.id.buttonLogin).setOnClickListener(this);
-        findViewById(R.id.buttonRegistration).setOnClickListener(this);
+        findViewById(R.id.btnLogin).setOnClickListener(this);
+        findViewById(R.id.btnRegistration).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.buttonLogin) {
+        if (view.getId() == R.id.btnLogin) {
             login();
-        } else if (view.getId() == R.id.buttonRegistration) {
+        } else if (view.getId() == R.id.btnRegistration) {
             startActivity(new Intent(this, RegistrationActivity.class));
         }
     }
@@ -48,8 +48,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void login() {
-        EditText editTextLogin = findViewById(R.id.input_login);
-        EditText editTextPassword = findViewById(R.id.input_password);
+        EditText editTextLogin = findViewById(R.id.etLogin);
+        EditText editTextPassword = findViewById(R.id.etPassword);
 
         Credentials credentials = new Credentials(
             editTextLogin.getText().toString(),
