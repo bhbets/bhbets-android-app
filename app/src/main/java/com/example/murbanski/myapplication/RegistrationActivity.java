@@ -34,8 +34,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                 editTextPassword.getText().toString()
         );
 
-
-
         if(editTextPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
             authorizationApi.register(credentials)
                     .enqueue(this);

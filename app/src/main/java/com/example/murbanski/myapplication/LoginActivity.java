@@ -30,20 +30,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextLogin.setText(loadLogin());
         editTextPassword.setText(loadPassword());
 
-        if(editTextLogin.getText().length() > 1 && editTextPassword.getText().length() > 1)
-        {
-            findViewById(R.id.btnLogin).performClick();
+        Credentials credentials = new Credentials(
+                editTextLogin.getText().toString(),
+                editTextPassword.getText().toString()
+        );
+
+        if(editTextLogin.getText().length() > 1 && editTextPassword.getText().length() > 1){
+            authorizationApi.login(credentials)
+                    .enqueue(this);
+
+        }else{
+            Toast.makeText(LoginActivity.this, "Passwords do not match.", Toast.LENGTH_LONG).show();
         }
 
     }
 
     @Override
     public void onClick(View view) {
-        EditText editTextLogin = findViewById(R.id.etLogin);
-        EditText editTextPassword = findViewById(R.id.etPassword);
         if (view.getId() == R.id.btnLogin) {
             login();
-            saveData(editTextLogin.getText().toString(), editTextPassword.getText().toString());
         } else if (view.getId() == R.id.btnRegistration) {
             startActivity(new Intent(this, RegistrationActivity.class));
         }
@@ -51,7 +56,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+        EditText editTextLogin = findViewById(R.id.etLogin);
+        EditText editTextPassword = findViewById(R.id.etPassword);
         if (response.isSuccessful()) {
+            saveData(editTextLogin.getText().toString(), editTextPassword.getText().toString());
             startActivity(new Intent(this, MainActivity.class));
         } else {
             Toast.makeText(this, "Something went wrong: " + response.message(), Toast.LENGTH_LONG).show();
@@ -88,7 +96,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public String loadLogin() {
 
         SharedPreferences loadGame = getSharedPreferences("Save", MODE_PRIVATE);
-
         return loadGame.getString("login", "");
 
     }
@@ -96,7 +103,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public String loadPassword() {
 
         SharedPreferences loadGame = getSharedPreferences("Save", MODE_PRIVATE);
-
         return loadGame.getString("password", "");
 
     }
