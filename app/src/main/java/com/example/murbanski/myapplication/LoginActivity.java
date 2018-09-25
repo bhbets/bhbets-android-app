@@ -26,8 +26,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         EditText editTextPassword = findViewById(R.id.etPassword);
         findViewById(R.id.btnLogin).setOnClickListener(this);
         findViewById(R.id.btnRegistration).setOnClickListener(this);
-        hasSavedCredentials(loadLogin(), loadPassword());
-
+        if (hasSavedCredentials()) {
+            authorizationApi.login(loadCredentials()).enqueue(this);
+        }
         editTextPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -52,10 +53,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-        EditText editTextLogin = findViewById(R.id.etLogin);
-        EditText editTextPassword = findViewById(R.id.etPassword);
         if (response.isSuccessful()) {
-            saveData(editTextLogin.getText().toString(), editTextPassword.getText().toString());
+            saveCredentials();
             startActivity(new Intent(this, MainActivity.class));
         } else {
             Toast.makeText(this, "Something went wrong: " + response.message(), Toast.LENGTH_LONG).show();
@@ -78,33 +77,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         authorizationApi.login(credentials).enqueue(this);
     }
 
-    private void saveData(String login, String password) {
+    private void saveCredentials() {
+        EditText editTextLogin = findViewById(R.id.etLogin);
+        EditText editTextPassword = findViewById(R.id.etPassword);
         SharedPreferences saveGame = getSharedPreferences("Save", MODE_PRIVATE);
         SharedPreferences.Editor save = saveGame.edit();
-        save.putString("login", login);
-        save.putString("password", password);
+        save.putString("login", editTextLogin.getText().toString());
+        save.putString("password", editTextPassword.getText().toString());
         save.apply();
     }
 
-    private String loadLogin() {
-        SharedPreferences loadGame = getSharedPreferences("Save", MODE_PRIVATE);
-        return loadGame.getString("login", "");
+    private Credentials loadCredentials() {
+        SharedPreferences preferences = getSharedPreferences("Save", MODE_PRIVATE);
+        return new Credentials(
+                preferences.getString("login", null),
+                preferences.getString("password", null)
+        );
     }
 
-    private String loadPassword() {
-        SharedPreferences loadGame = getSharedPreferences("Save", MODE_PRIVATE);
-        return loadGame.getString("password", "");
-    }
-
-    private void hasSavedCredentials(String login, String password){
-        if(!login.isEmpty() && !password.isEmpty()){
-            Credentials credentials = new Credentials(
-                    login,
-                    password
-            );
-            authorizationApi.login(credentials)
-                    .enqueue(this);
-        }
+    private boolean hasSavedCredentials() {
+        SharedPreferences preferences = getSharedPreferences("Save", MODE_PRIVATE);
+        return preferences.contains("login") && preferences.contains("password");
     }
 }
 
