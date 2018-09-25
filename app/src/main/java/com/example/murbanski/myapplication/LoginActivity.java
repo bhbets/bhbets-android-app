@@ -1,6 +1,7 @@
 package com.example.murbanski.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,14 +21,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        EditText editTextLogin = findViewById(R.id.etLogin);
+        EditText editTextPassword = findViewById(R.id.etPassword);
+
         findViewById(R.id.btnLogin).setOnClickListener(this);
         findViewById(R.id.btnRegistration).setOnClickListener(this);
+
+        editTextLogin.setText(loadLogin());
+        editTextPassword.setText(loadPassword());
+
+        if(editTextLogin.getText().length() > 1 && editTextPassword.getText().length() > 1)
+        {
+            findViewById(R.id.btnLogin).performClick();
+        }
+
     }
 
     @Override
     public void onClick(View view) {
+        EditText editTextLogin = findViewById(R.id.etLogin);
+        EditText editTextPassword = findViewById(R.id.etPassword);
         if (view.getId() == R.id.btnLogin) {
             login();
+            saveData(editTextLogin.getText().toString(), editTextPassword.getText().toString());
         } else if (view.getId() == R.id.btnRegistration) {
             startActivity(new Intent(this, RegistrationActivity.class));
         }
@@ -57,6 +73,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         );
 
         authorizationApi.login(credentials).enqueue(this);
+    }
+
+    public void saveData(String login, String password) {
+
+        SharedPreferences saveGame = getSharedPreferences("Save", MODE_PRIVATE);
+        SharedPreferences.Editor save = saveGame.edit();
+        save.putString("login", login);
+        save.putString("password", password);
+        save.apply();
+
+    }
+
+    public String loadLogin() {
+
+        SharedPreferences loadGame = getSharedPreferences("Save", MODE_PRIVATE);
+
+        return loadGame.getString("login", "");
+
+    }
+
+    public String loadPassword() {
+
+        SharedPreferences loadGame = getSharedPreferences("Save", MODE_PRIVATE);
+
+        return loadGame.getString("password", "");
+
     }
 }
 
