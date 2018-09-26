@@ -24,11 +24,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         EditText editTextPassword = findViewById(R.id.etPassword);
+
         findViewById(R.id.btnLogin).setOnClickListener(this);
         findViewById(R.id.btnRegistration).setOnClickListener(this);
-        if (hasSavedCredentials()) {
-            authorizationApi.login(loadCredentials()).enqueue(this);
-        }
+
         editTextPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -40,6 +39,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 return handled;
             }
         });
+
+        if (hasSavedCredentials()) {
+            authorizationApi.login(loadCredentials()).enqueue(this);
+        }
     }
 
     @Override
@@ -78,17 +81,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void saveCredentials() {
+        SharedPreferences.Editor credentials = getSharedPreferences("Credentials", MODE_PRIVATE).edit();
+
         EditText editTextLogin = findViewById(R.id.etLogin);
+        credentials.putString("login", editTextLogin.getText().toString());
+
         EditText editTextPassword = findViewById(R.id.etPassword);
-        SharedPreferences saveGame = getSharedPreferences("Save", MODE_PRIVATE);
-        SharedPreferences.Editor save = saveGame.edit();
-        save.putString("login", editTextLogin.getText().toString());
-        save.putString("password", editTextPassword.getText().toString());
-        save.apply();
+        credentials.putString("password", editTextPassword.getText().toString());
+
+        credentials.apply();
     }
 
     private Credentials loadCredentials() {
-        SharedPreferences preferences = getSharedPreferences("Save", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("Credentials", MODE_PRIVATE);
         return new Credentials(
                 preferences.getString("login", null),
                 preferences.getString("password", null)
@@ -96,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private boolean hasSavedCredentials() {
-        SharedPreferences preferences = getSharedPreferences("Save", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("Credentials", MODE_PRIVATE);
         return preferences.contains("login") && preferences.contains("password");
     }
 }
