@@ -1,4 +1,4 @@
-package com.example.murbanski.myapplication;
+package com.example.murbanski.bhbets;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

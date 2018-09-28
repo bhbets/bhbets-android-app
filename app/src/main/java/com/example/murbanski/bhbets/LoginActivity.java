@@ -1,4 +1,4 @@
-package com.example.murbanski.myapplication;
+package com.example.murbanski.bhbets;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,10 +23,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        EditText editTextPassword = findViewById(R.id.etPassword);
+
 
         findViewById(R.id.btnLogin).setOnClickListener(this);
         findViewById(R.id.btnRegistration).setOnClickListener(this);
+        EditText editTextPassword = findViewById(R.id.etPassword);
 
         editTextPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

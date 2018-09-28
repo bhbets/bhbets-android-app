@@ -1,4 +1,4 @@
-package com.example.murbanski.myapplication;
+package com.example.murbanski.bhbets;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

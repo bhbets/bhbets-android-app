@@ -1,4 +1,4 @@
-package com.example.murbanski.myapplication;
+package com.example.murbanski.bhbets;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,6 +48,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
         if (response.isSuccessful()) {
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            Toast.makeText(this, "Registration completed. " + response.message(), Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "Registration failed: " + response.message(), Toast.LENGTH_LONG).show();
         }

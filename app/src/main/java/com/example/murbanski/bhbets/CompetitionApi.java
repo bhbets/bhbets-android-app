@@ -1,4 +1,4 @@
-package com.example.murbanski.myapplication;
+package com.example.murbanski.bhbets;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

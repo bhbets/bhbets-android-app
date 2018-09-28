@@ -1,11 +1,16 @@
-package com.example.murbanski.myapplication;
+package com.example.murbanski.bhbets;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MatchData {
+import java.util.List;
+
+public class GetSingleMatchResponse {
 
     @SerializedName("id")
     private String id;
+
+    @SerializedName("status")
+    private String status;
 
     @SerializedName("homeTeamName")
     private String homeTeam;
@@ -22,10 +27,13 @@ public class MatchData {
     @SerializedName("result")
     private Score result;
 
-    @SerializedName("status")
-    private String status;
+    @SerializedName("points")
+    private int points;
 
-    public MatchData() {
+    @SerializedName("otherBets")
+    private List<BetData> otherBets;
+
+    public GetSingleMatchResponse() {
     }
 
     public String getId() {
@@ -34,6 +42,14 @@ public class MatchData {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getHomeTeam() {
@@ -76,11 +92,21 @@ public class MatchData {
         this.result = result;
     }
 
-    public String getStatus() {
-        return status;
+    public int getPoints() {
+        return points;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setPoints(int points) {
+        this.points = points;
     }
+
+    public List<BetData> getOtherBets() {
+        return otherBets;
+    }
+
+    public void setOtherBets(List<BetData> otherBets) {
+        this.otherBets = otherBets;
+    }
+
+    // konstruktor, gettery, settery
 }

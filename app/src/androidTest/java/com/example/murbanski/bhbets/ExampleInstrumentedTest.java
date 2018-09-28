@@ -1,4 +1,4 @@
-package com.example.murbanski.myapplication;
+package com.example.murbanski.bhbets;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
