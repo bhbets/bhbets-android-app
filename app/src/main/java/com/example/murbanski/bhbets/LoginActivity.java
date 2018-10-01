@@ -24,11 +24,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         findViewById(R.id.btnLogin).setOnClickListener(this);
         findViewById(R.id.btnRegistration).setOnClickListener(this);
-        EditText editTextPassword = findViewById(R.id.etPassword);
 
+        EditText editTextPassword = findViewById(R.id.etPassword);
         editTextPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

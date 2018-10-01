@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements Callback<GetMatch
                 Intent intent = new Intent(getApplicationContext(), BetsForMatchActivity.class);
                 intent.putExtra("MATCH_ID", selectedMatch.getId());
                 startActivity(intent);
-
             }
         });
 
