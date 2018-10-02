@@ -13,7 +13,7 @@ import retrofit2.Response;
 
 public class BetsForMatchActivity extends AppCompatActivity implements Callback<GetSingleMatchResponse> {
 
-    private final CompetitionApi competitionApi = new CompetitionClient();
+    private final CompetitionApi competitionApi = new CompetitionClient("");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

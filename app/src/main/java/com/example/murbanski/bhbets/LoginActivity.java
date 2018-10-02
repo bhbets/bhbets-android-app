@@ -58,7 +58,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
         if (response.isSuccessful()) {
             saveCredentials();
-            startActivity(new Intent(this, MainActivity.class));
+
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("auth_token", response.body().getAccessToken());
+
+            startActivity(intent);
         } else {
             Toast.makeText(this, "Something went wrong: " + response.message(), Toast.LENGTH_LONG).show();
         }

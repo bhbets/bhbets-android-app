@@ -13,12 +13,14 @@ import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity implements Callback<GetMatchesResponse> {
 
-    private final CompetitionApi competitionApi = new CompetitionClient();
+    private CompetitionApi competitionApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        competitionApi = new CompetitionClient(getIntent().getStringExtra("auth_token"));
 
         final ListView listView = findViewById(R.id.cardListView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -37,20 +39,25 @@ public class MainActivity extends AppCompatActivity implements Callback<GetMatch
 
     @Override
     public void onResponse(Call<GetMatchesResponse> call, retrofit2.Response<GetMatchesResponse> response) {
+        if (!response.isSuccessful()) {
+            Toast
+                    .makeText(this, response.message(), Toast.LENGTH_LONG)
+                    .show();
+            return;
+        }
+
         final ListView listView = findViewById(R.id.cardListView);
         listView.setAdapter(new MatchDataAdapter(this, response.body().getMatches()));
     }
 
     @Override
     public void onFailure(Call<GetMatchesResponse> call, Throwable t) {
-        Toast.makeText(getApplicationContext(), "Got error: " + t.getLocalizedMessage(), Toast.LENGTH_LONG)
+        Toast
+                .makeText(this, "Got error: " + t.getLocalizedMessage(), Toast.LENGTH_LONG)
                 .show();
     }
 
     public void goToPoints (View view) {
-
-        Intent intent = new Intent(getApplicationContext(), PointsActivity.class);
-        startActivity(intent);
-
+        startActivity(new Intent(this, PointsActivity.class));
     }
 }
