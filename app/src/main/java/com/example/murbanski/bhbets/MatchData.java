@@ -2,6 +2,8 @@ package com.example.murbanski.bhbets;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class MatchData {
 
     @SerializedName("id")
@@ -24,6 +26,12 @@ public class MatchData {
 
     @SerializedName("status")
     private String status;
+
+    @SerializedName("points")
+    private int points;
+
+    @SerializedName("otherBets")
+    private List<BetData> otherBets;
 
     public MatchData() {
     }
@@ -82,5 +90,21 @@ public class MatchData {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public List<BetData> getOtherBets() {
+        return otherBets;
+    }
+
+    public void setOtherBets(List<BetData> otherBets) {
+        this.otherBets = otherBets;
     }
 }

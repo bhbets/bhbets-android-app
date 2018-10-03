@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import retrofit2.Response;
 
 public class BetsForMatchActivity extends AppCompatActivity implements Callback<GetSingleMatchResponse> {
 
-    private final CompetitionApi competitionApi = new CompetitionClient("");
+    private final CompetitionApi competitionApi = new CompetitionClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +26,27 @@ public class BetsForMatchActivity extends AppCompatActivity implements Callback<
 
     @Override
     public void onResponse(Call<GetSingleMatchResponse> call, Response<GetSingleMatchResponse> response) {
-        displayMatchInformation(response.body().getHomeTeam(), response.body().getAwayTeam());
+        if (!response.isSuccessful()) {
+            Toast
+                    .makeText(this, "Error: " + response.message(), Toast.LENGTH_SHORT)
+                    .show();
 
-        if (response.body().getBet() != null) {
-            displayBetForLoggedUser("Player", response.body().getBet());
+            return;
         }
 
-        if ("FINISHED".equals(response.body().getStatus())) {
-            displayMatchResult(response.body().getResult());
+        final MatchData matchData = response.body().getMatch();
+        displayMatchInformation(matchData.getHomeTeam(), matchData.getAwayTeam());
+
+        if (matchData.getBet() != null) {
+            displayBetForLoggedUser("Player", matchData.getBet());
         }
 
-        if ("LOCKED".equals(response.body().getStatus()) || "FINISHED".equals(response.body().getStatus())) {
-            displayOtherBets(response.body().getOtherBets());
+        if ("FINISHED".equals(matchData.getStatus())) {
+            displayMatchResult(matchData.getResult());
+        }
+
+        if ("LOCKED".equals(matchData.getStatus()) || "FINISHED".equals(matchData.getStatus())) {
+            displayOtherBets(matchData.getOtherBets());
         }
     }
 

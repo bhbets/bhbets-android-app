@@ -9,7 +9,8 @@ public class CompetitionClient implements CompetitionApi {
 
     private final CompetitionApi instance;
 
-    CompetitionClient(String authToken) {
+    CompetitionClient() {
+        final String authToken = AccessTokenStore.get();
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new AuthorizationHeaderInterceptor(authToken))
                 .build();

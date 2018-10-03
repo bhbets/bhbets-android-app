@@ -13,14 +13,12 @@ import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity implements Callback<GetMatchesResponse> {
 
-    private CompetitionApi competitionApi;
+    private final CompetitionApi competitionApi = new CompetitionClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        competitionApi = new CompetitionClient(getIntent().getStringExtra("auth_token"));
 
         final ListView listView = findViewById(R.id.cardListView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

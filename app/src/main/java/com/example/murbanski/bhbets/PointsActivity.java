@@ -10,7 +10,7 @@ import retrofit2.Response;
 
 public class PointsActivity extends AppCompatActivity implements Callback<GetPointsResponse> {
 
-    private final CompetitionApi competitionApi = new CompetitionClient("");
+    private final CompetitionApi competitionApi = new CompetitionClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
