@@ -7,21 +7,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CompetitionClient implements CompetitionApi {
 
-    private final CompetitionApi instance;
+    private final OkHttpClient httpClient =
+        new OkHttpClient.Builder()
+            .addInterceptor(new AuthorizationHeaderInterceptor(AccessTokenStore.get()))
+            .build();
 
-    CompetitionClient() {
-        final String authToken = AccessTokenStore.get();
-        OkHttpClient httpClient = new OkHttpClient.Builder()
-                .addInterceptor(new AuthorizationHeaderInterceptor(authToken))
-                .build();
-
-        this.instance = new Retrofit.Builder()
-                .client(httpClient)
-                .baseUrl("http://catheriann.nazwa.pl:8081")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(CompetitionApi.class);
-    }
+    private final CompetitionApi instance =
+        new Retrofit.Builder()
+            .client(httpClient)
+            .baseUrl("http://catheriann.nazwa.pl:8081")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(CompetitionApi.class);
 
     @Override
     public Call<GetMatchesResponse> getMatches() {

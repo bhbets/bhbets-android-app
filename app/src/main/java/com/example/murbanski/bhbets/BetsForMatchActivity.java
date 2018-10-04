@@ -28,8 +28,8 @@ public class BetsForMatchActivity extends AppCompatActivity implements Callback<
     public void onResponse(Call<GetSingleMatchResponse> call, Response<GetSingleMatchResponse> response) {
         if (!response.isSuccessful()) {
             Toast
-                    .makeText(this, "Error: " + response.message(), Toast.LENGTH_SHORT)
-                    .show();
+                .makeText(this, "Error: " + response.message(), Toast.LENGTH_SHORT)
+                .show();
 
             return;
         }
@@ -55,7 +55,7 @@ public class BetsForMatchActivity extends AppCompatActivity implements Callback<
 
     }
 
-    private void displayMatchInformation(String homeTeam, String awayTeam){
+    private void displayMatchInformation(String homeTeam, String awayTeam) {
         TextView txtTeams = findViewById(R.id.txtTeams);
         txtTeams.setText(String.format("%s - %s", homeTeam, awayTeam));
     }
@@ -65,7 +65,7 @@ public class BetsForMatchActivity extends AppCompatActivity implements Callback<
         txtResult.setText(String.format("%s : %s", result.getHomeTeam(), result.getAwayTeam()));
     }
 
-    private void displayBetForLoggedUser(String player, Score bet){
+    private void displayBetForLoggedUser(String player, Score bet) {
         TextView txtPlayer = findViewById(R.id.txtPlayer);
         txtPlayer.setText(player);
 

@@ -17,8 +17,8 @@ public class AuthorizationHeaderInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request().newBuilder()
-                .addHeader("Authorization", token)
-                .build();
+            .addHeader("Authorization", token)
+            .build();
 
         return chain.proceed(request);
     }

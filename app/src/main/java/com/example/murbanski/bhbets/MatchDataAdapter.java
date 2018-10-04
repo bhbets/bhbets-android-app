@@ -17,7 +17,7 @@ public class MatchDataAdapter extends ArrayAdapter<MatchData> {
     private List<MatchData> matches;
 
     public MatchDataAdapter(@NonNull Context context, List<MatchData> list) {
-        super(context, 0 , list);
+        super(context, 0, list);
         mContext = context;
         matches = list;
     }
@@ -26,8 +26,9 @@ public class MatchDataAdapter extends ArrayAdapter<MatchData> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
-        if(listItem == null)
-            listItem = LayoutInflater.from(mContext).inflate(R.layout.match_list_item, parent,false);
+        if (listItem == null) {
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.match_list_item, parent, false);
+        }
 
         final MatchData currentMatch = matches.get(position);
         TextView textViewHome = listItem.findViewById(R.id.txt_match_team_home);

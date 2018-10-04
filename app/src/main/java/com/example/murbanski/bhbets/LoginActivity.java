@@ -98,8 +98,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Credentials loadCredentials() {
         SharedPreferences preferences = getSharedPreferences("Credentials", MODE_PRIVATE);
         return new Credentials(
-                preferences.getString("login", null),
-                preferences.getString("password", null)
+            preferences.getString("login", null),
+            preferences.getString("password", null)
         );
     }
 

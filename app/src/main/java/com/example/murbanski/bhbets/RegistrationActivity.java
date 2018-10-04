@@ -30,8 +30,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         EditText editTextConfirmPassword = findViewById(R.id.etConfirmPassword);
 
         Credentials credentials = new Credentials(
-                editTextLogin.getText().toString(),
-                editTextPassword.getText().toString()
+            editTextLogin.getText().toString(),
+            editTextPassword.getText().toString()
         );
 
         if (editTextPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())) {

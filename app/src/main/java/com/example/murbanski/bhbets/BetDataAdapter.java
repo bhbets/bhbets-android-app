@@ -17,7 +17,7 @@ public class BetDataAdapter extends ArrayAdapter<BetData> {
     private List<BetData> bets;
 
     public BetDataAdapter(@NonNull Context context, List<BetData> list) {
-        super(context, 0 , list);
+        super(context, 0, list);
         mContext = context;
         bets = list;
     }

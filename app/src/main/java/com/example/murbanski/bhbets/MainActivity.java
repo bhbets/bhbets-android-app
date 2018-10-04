@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements Callback<GetMatch
     public void onResponse(Call<GetMatchesResponse> call, retrofit2.Response<GetMatchesResponse> response) {
         if (!response.isSuccessful()) {
             Toast
-                    .makeText(this, response.message(), Toast.LENGTH_LONG)
-                    .show();
+                .makeText(this, response.message(), Toast.LENGTH_LONG)
+                .show();
             return;
         }
 
@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity implements Callback<GetMatch
     @Override
     public void onFailure(Call<GetMatchesResponse> call, Throwable t) {
         Toast
-                .makeText(this, "Got error: " + t.getLocalizedMessage(), Toast.LENGTH_LONG)
-                .show();
+            .makeText(this, "Got error: " + t.getLocalizedMessage(), Toast.LENGTH_LONG)
+            .show();
     }
 
-    public void goToPoints (View view) {
+    public void goToPoints(View view) {
         startActivity(new Intent(this, PointsActivity.class));
     }
 }
